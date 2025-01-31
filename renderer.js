@@ -11,9 +11,9 @@ const images = {
 };
 let currentIndex = 0;
 let currentState = 'initial'; // Initial state
-let workTime = 5; // 60 minutes in seconds
-let breakTime = 5; // 10 minutes in seconds
-let happyTime = 3; // 5 minutes in seconds
+let workTime = 25 * 60 ; // 60 minutes in seconds
+let breakTime = 5 * 60; // 10 minutes in seconds
+let happyTime = 4; // 5 minutes in seconds
 let countdownTime = workTime;
 let carrotsEaten = 0;
 let carrotInUseId = null;
