@@ -1,0 +1,61 @@
+Here are the states for the rabbit. The code so far is the state "work". Generate the code for the states, so that I can expand the code with more states and transitions.
+
+State: "work" Rabbit is alternating between netral1 and neutral2
+Transition: "work to sleeping" if "work time is up"
+State: "sleeping" Rabbit is alternating between sleeping1, sleeping2, sleeping3 and sleeping4
+Transition: "sleeping to hungry" if "break time is up"
+State: "hungry" Rabbit alternating between hungy1 and hungy2
+Transition: "hungry to work" if "hungry time is over"
+State: "work"
+
+State: hungry
+Transition: "If carrot drops start"
+State: "Openmouth"
+Transition: If carrot drop end over rabbit
+State: "eating" rabbit alternating between eating1 and eating2
+Transition: If every carrot is eaten
+State: "happy"
+Transition: if not every carrot is eaten
+State: "hungry"
+
+Hungry to happy
+If the rabbit is in the hungry state and all carrots are eaten, change it to the happy state.
+Set the countdown timer to the happy time.
+Clear any carrots on the screen.
+Reset the number of carrots eaten to 0.
+If not all carrots are eaten, stay in the hungry state.
+
+Happy to work
+If the rabbit is in the happy state, change it to the work state.
+set the countdown timer to work time
+Clear any carrots on the screen.
+Show the clock.
+
+function handleStateTransition() {
+    if (currentState === 'work') {
+        currentState = 'sleeping';
+        countdownTime = breakTime;
+        clearCarrots();
+        clock.style.display = 'block'; // Show the clock
+    } else if (currentState === 'inital') {
+        currentState = 'hungry';
+        showCarrots();
+        clock.style.display = 'none'; // Show the clock
+    } else if (currentState === 'sleeping') {
+        currentState = 'hungry';
+        showCarrots();
+        clock.style.display = 'none'; // Hide the clock
+    } else if (currentState === 'hungry') {
+        if (carrotsEaten >= totalCarrots) {
+            currentState = 'work';
+            countdownTime = workTime;
+            clearCarrots();
+            carrotsEaten = 0; // Reset the carrotsEaten counter
+            clock.style.display = 'block'; // Show the clock
+        } else {
+            // Remain in the hungry state
+            return;
+        }
+    }
+    currentIndex = 0; // Reset image index for new state
+    updateRabbitImage();

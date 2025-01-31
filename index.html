@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet</title>
+  <style>
+    @font-face {
+        font-family: 'Digital-7';
+        src: url('fonts/digital-7.ttf') format('truetype');
+    }
+
+    body {
+        margin: 0;
+        /* background: transparent; /* Make the background transparent */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .widget {
+        width: 200px;
+        height: 200px;
+        background: rgba(87, 87, 87, 0.957);
+        border-radius: 4px;
+        /* color: white; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: bounce 1s infinite;
+        position: relative;
+    }
+
+    .header {
+        width: 100%;
+        height: 30px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+    }
+
+    #rabbit {
+        width: 90px;
+        display: block; /* Ensure the image is displayed as a block element */
+    }
+
+    .drag-region {
+        -webkit-app-region: drag;
+        width: calc(100% - 30px); /* Make the drag region the full width of the widget */
+        height: 30px;
+        top: 0;
+        left: 30px; /* Align the drag region with the left edge of the widget */
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+
+    .close-button {
+        top: 5px;
+        left: 5px;
+        background-color: transparent; /* Make the background transparent */
+        border: none;
+        width: 30px; /* Increase width */
+        height: 30px; /* Increase height */
+        display: flex;
+        cursor: pointer;
+        opacity: 0.4; /* Set initial lower opacity */
+        transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease; /* Add transition for smooth effect */
+    }
+
+    .close-button:hover {
+        color: rgb(255, 255, 255); /* Change color on hover */
+        transform: scale(1.1); /* Slightly enlarge the button on hover */
+        opacity: 1; /* Increase opacity on hover */
+    }
+
+    .close-button svg {
+        width: 30px; /* Increase SVG icon width */
+        height: 30px; /* Increase SVG icon height */
+        stroke: rgb(255, 255, 255); /* Set the stroke color to light gray */
+        pointer-events: auto;
+    }
+
+    .drag-handle {
+        height: 20px;
+        width: fit-content;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%); /* Center the drag handle */
+        opacity: 0.4;
+    }
+
+    .drag-handle svg {
+        width: 60px; /* Increase SVG icon width */
+        height: 20px;
+        fill: rgb(189, 189, 189)
+    }
+
+    .footer {
+        width: 100%;
+        height: 40px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center; /* Center vertically */
+    }
+
+    #clock {
+        width: fit-content;
+        font-family: 'Digital-7', sans-serif; /* Apply Digital-7 font */
+        color: rgb(255, 255, 255);
+        text-align: center;
+        margin: 0 auto; /* Center the clock */
+        opacity: 0.4;
+        transition: color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
+    }
+
+    #clock:hover {
+        color: rgb(255, 255, 255); /* Change color on hover */
+        transform: scale(1.1); /* Slightly enlarge the clock on hover */
+        opacity: 1; /* Increase opacity on hover */
+    }
+    
+    .leftbar {
+        width: 50px;
+        height: calc(100% - 60px); /* Adjust height to account for header and footer */
+        position: absolute;
+        top: 30px; /* Position below the header */
+        left: 0;
+        display: flex;
+        flex-direction: column; /* Arrange items in a column */
+        justify-content: center; /* Center items vertically */
+        align-items: center; /* Center items horizontally */
+        justify-content: space-evenly;
+        
+    }
+
+    .carrot {
+        width: 18px;
+        cursor: grab;
+    }
+
+    .rightbar {
+        width: 50px;
+        height: calc(100% - 60px); /* Adjust height to account for header and footer */
+        position: absolute;
+        top: 30px; /* Position below the header */
+        right: 0;
+        display: flex;
+        flex-direction: column; /* Arrange items in a column */
+        justify-content: center; /* Center items vertically */
+        align-items: center; /* Center items horizontally */
+        justify-content: space-evenly;
+    }
+
+    [draggable="true"] {
+  cursor: move;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="header">
+            <button class="close-button">
+                <svg viewBox="0 0 24 24">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke-width="3"/> <!-- Increase stroke-width -->
+                    <line x1="6" y1="6" x2="18" y2="18" stroke-width="3"/> <!-- Increase stroke-width -->
+                </svg>
+            </button>
+            <div class="drag-region"></div>
+            <div class="drag-handle">
+                <svg viewBox="0 0 60 24">
+                    <rect x="0" y="10" rx="2" ry="2" width="60" height="4"/>
+                </svg>
+            </div>
+        </div>
+        <div class="leftbar">
+        </div>
+        <div class="mainanimation">
+            <img id="rabbit" src="animation/rabbit_neutral1.png" alt="Rabbit">
+        </div>
+        <div class="rightbar">
+            <img class= "carrot" src="animation/carrot.png" alt="carrot" draggable="true">
+            <img class= "carrot" src="animation/carrot.png" alt="carrot" draggable="true">
+        </div>
+        <div class="footer">
+            <div id="clock"></div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>
