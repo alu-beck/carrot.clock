@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 function createWindow() {
-  const iconPath = path.join(__dirname, 'assets', process.platform === 'darwin' ? 'icon_2@1024x1024.png' : process.platform === 'win32' ? 'icon_2@1024x1024.png' : 'icon_2@1024x1024.png');
+  const iconPath = path.join(__dirname, 'assets', process.platform === 'darwin' ? 'icon_2x1024x1024.png' : process.platform === 'win32' ? 'icon_2x1024x1024.png' : 'icon_2x1024x1024.png');
   console.log(`Icon path: ${iconPath}`); // Debugging: Log the icon path
 
   // Check if the icon file exists
@@ -58,7 +58,7 @@ function createWindow() {
 app.on('ready', () => {
   createWindow();
   if (process.platform === 'darwin') {
-    const dockIconPath = path.join(__dirname, 'assets', 'icon_2@1024x1024.png');
+    const dockIconPath = path.join(__dirname, 'assets', 'icon_2x1024x1024.png');
     console.log(`Dock icon path: ${dockIconPath}`); // Debugging: Log the dock icon path
 
     // Check if the dock icon file exists

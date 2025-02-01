@@ -18,13 +18,13 @@
   "build": {
     "appId": "com.example.myapp",
     "mac": {
-      "icon": "assets/icon_2@1024x1024.png"
+      "icon": "assets/icon_2x1024x1024.png"
     },
     "win": {
-      "icon": "assets/icon_2@1024x1024.png"
+      "icon": "assets/icon_2x1024x1024.png"
     },
     "linux": {
-      "icon": "assets/icon_2@1024x1024.png"
+      "icon": "assets/icon_2x1024x1024.png"
     }
   }
   
