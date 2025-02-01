@@ -1,6 +1,6 @@
 {
   "name": "pet",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,5 +14,18 @@
   "devDependencies": {
     "electron": "^34.0.0",
     "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "mac": {
+      "icon": "assets/icon_2@1024x1024.png"
+    },
+    "win": {
+      "icon": "assets/icon_2@1024x1024.png"
+    },
+    "linux": {
+      "icon": "assets/icon_2@1024x1024.png"
+    }
   }
+  
 }
