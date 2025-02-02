@@ -16,7 +16,7 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "appId": "com.example.myapp",
+    "appId": "com.anna-luna.pet",
     "mac": {
       "icon": "assets/icon_2x1024x1024.png"
     },
